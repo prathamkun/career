@@ -1,19 +1,20 @@
 <div align="center">
+  <img src="docs/assets/banner.png" alt="Career Pilot Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
   <br />
-  <h1>🚀 Career Pilot</h1>
+  <h1>🌐 Career Pilot</h1>
   <p>
     <strong>An intelligent, AI-powered career platform that revolutionizes the job hunting experience through automated resume enhancement, intelligent job matching, AI mock interviews, corporate fellowships, and community-driven networking.</strong>
   </p>
 
   <p align="center"> 
     <a href="https://github.com/ishwari418/career-pilot/blob/main/LICENSE">
-      <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" />
+      <img src="https://img.shields.io/badge/License-MIT-0052CC?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" />
     </a>
-    <img src="https://img.shields.io/badge/Node.js-18+-green?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
-    <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-    <img src="https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
-    <img src="https://img.shields.io/badge/AI-Gemini_2.5-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Gemini AI" />
-    <img src="https://img.shields.io/badge/Payments-Razorpay-02042B?style=for-the-badge&logo=razorpay&logoColor=white" alt="Razorpay" />
+    <img src="https://img.shields.io/badge/Node.js-18+-0066FF?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+    <img src="https://img.shields.io/badge/React-19-1A75FF?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+    <img src="https://img.shields.io/badge/Firebase-Firestore-3385FF?style=for-the-badge&logo=firebase&logoColor=white" alt="Firebase" />
+    <img src="https://img.shields.io/badge/AI-Gemini_2.5-4D94FF?style=for-the-badge&logo=google&logoColor=white" alt="Gemini AI" />
+    <img src="https://img.shields.io/badge/Payments-Razorpay-66A3FF?style=for-the-badge&logo=razorpay&logoColor=white" alt="Razorpay" />
   </p>
 
   <p align="center">
@@ -42,31 +43,31 @@ We solve the modern job seeker's most painful challenges:
 <table>
   <tr>
     <td width="50%">
-      <h3>🤖 Resume Optimization</h3>
+      <h3>💎 Resume Optimization</h3>
       <p>AI-powered resume enhancement using Google Gemini 2.5 with ATS scoring and Harvard-format templates.</p>
     </td>
     <td width="50%">
-      <h3>🔔 Information Overload</h3>
+      <h3>🧊 Information Overload</h3>
       <p>Smart job alerts with customizable filters (keywords, location, salary, employment type) delivered via real-time sockets.</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>📊 Application Tracking</h3>
+      <h3>📈 Application Tracking</h3>
       <p>Visual Kanban-style job tracker with status management from Saved all the way to Offered.</p>
     </td>
     <td width="50%">
-      <h3>🤝 Isolation & Networking</h3>
+      <h3>🌐 Isolation & Networking</h3>
       <p>Real-time community platform with channels, posts, direct messaging, and presence indicators.</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>🎓 Skill Gaps & Portfolios</h3>
+      <h3>📘 Skill Gaps & Portfolios</h3>
       <p>AI-generated improvement suggestions, LinkedIn optimizations, and a drag-and-drop Portfolio Builder.</p>
     </td>
     <td width="50%">
-      <h3>⏱️ Time Consumption</h3>
+      <h3>⚡ Time Consumption</h3>
       <p>Automated job fetching, bulk processing via queues, and one-click resume downloads.</p>
     </td>
   </tr>
