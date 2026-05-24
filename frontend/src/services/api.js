@@ -1,4 +1,5 @@
 import { auth } from '../config/firebase'
+import { decryptKey } from '../utils/encryption'
 
 const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 
@@ -14,9 +15,19 @@ async function getAuthHeaders() {
     'Content-Type': 'application/json'
   }
 
-  const openRouterKey = localStorage.getItem('openRouterApiKey')
-  if (openRouterKey) {
-    headers['X-OpenRouter-Key'] = openRouterKey
+  const aiConfigStr = localStorage.getItem('aiConfig');
+  if (aiConfigStr) {
+    try {
+      const aiConfig = JSON.parse(aiConfigStr);
+      if (aiConfig.provider) headers['X-AI-Provider'] = aiConfig.provider;
+      if (aiConfig.apiKey) headers['X-AI-Key'] = decryptKey(aiConfig.apiKey);
+      if (aiConfig.model) headers['X-AI-Model'] = aiConfig.model;
+    } catch(e) {}
+  } else {
+    const openRouterKey = localStorage.getItem('openRouterApiKey');
+    if (openRouterKey) {
+      headers['X-OpenRouter-Key'] = decryptKey(openRouterKey);
+    }
   }
 
   return headers
@@ -57,26 +68,17 @@ async function handleResponse(response) {
     }
   } else {
     try {
-
       const text = await response.text();
       data = { error: text || response.statusText };
-    } catch {
-
-      data = { error: await response.text() };
     } catch (e) {
-
       data = { error: response.statusText };
     }
   }
 
   if (!response.ok) {
-
     const error = new Error(
       (data && data.error) || `Server error (${response.status})`
     );
-    error.status = response.status;
-
-    const error = new Error((data && data.error) || response.statusText || 'Something went wrong');
     error.status = response.status;
 
     if (response.status === 429) {
@@ -450,25 +452,6 @@ export const aiApi = {
     const response = await fetch(`${API_BASE}/ai/models?provider=${encodeURIComponent(provider)}`, {
       method: 'GET',
       headers
-    })
-    return handleResponse(response)
-  },
-
-  async getConfig() {
-    const headers = await getAuthHeaders()
-    const response = await fetch(`${API_BASE}/ai/config`, {
-      method: 'GET',
-      headers
-    })
-    return handleResponse(response)
-  },
-
-  async updateConfig(data) {
-    const headers = await getAuthHeaders()
-    const response = await fetch(`${API_BASE}/ai/config`, {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify(data)
     })
     return handleResponse(response)
   }
