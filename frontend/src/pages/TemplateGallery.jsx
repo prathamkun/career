@@ -5,12 +5,13 @@ import { useTheme } from "../hooks/useTheme";
 import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun, ChevronDown, Check, Eye, Star } from "lucide-react";
 import HolographicAbout from "../components/portfolio/templates/Holographic/About";
+import Hero from "../components/portfolio/templates/Holographic/Hero";
 import CulinaryAbout from "../components/portfolio/templates/Culinary_Restaurant/About";
 import TechStartupHero from "../components/portfolio/templates/Tech_Startup/Hero";
 import GeometricShapesAbout from "../components/portfolio/templates/Geometric_Shapes/About";
 import ChooseAdventurePortfolio from "../components/portfolio/templates/Choose_Adventure/index";
 import Navbar from '../components/Navbar'
-import GeometricShapesAbout from "../components/portfolio/templates/Geometric_Shapes/About";
+
 
 function FilterSelect({ value, onChange, options, className = "" }) {
   const [open, setOpen] = useState(false);
@@ -349,6 +350,9 @@ export default function TemplateGallery() {
             Preview
           </span>
           <h2 className="text-lg font-semibold text-foreground/70">Holographic Theme — About Section</h2>
+        </div>
+        <div className="overflow-hidden rounded-2xl border border-border">
+           <Hero />
         </div>
         <div className="overflow-hidden rounded-2xl border border-border">
           <HolographicAbout />
