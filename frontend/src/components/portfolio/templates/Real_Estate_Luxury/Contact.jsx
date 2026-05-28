@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { GithubIcon, Linkedin, Mail, Twitter } from 'lucide-react';
 
 const ease = [0.25, 0.1, 0.25, 1];
 

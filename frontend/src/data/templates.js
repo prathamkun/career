@@ -1872,17 +1872,17 @@ export const templates = [
     "createdAt": "2026-05-01"
   },
   {
-    "id": "Soft_Neumorphic",
-    "title": "Soft Neumorphic",
-    "category": "Portfolio",
-    "colorScheme": "Dark",
-    "layout": "Grid",
-    "author": "System",
-    "views": 1156,
-    "rating": 4.5,
-    "image": "/template-previews/Soft_Neumorphic.png",
-    "createdAt": "2026-05-01"
-  },
+  "id": "Soft_Neumorphic",
+  "title": "Soft Neumorphic",
+  "category": "Portfolio",
+  "colorScheme": "Light",
+  "layout": "Minimal",
+  "author": "Akansha02code",
+  "views": 1156,
+  "rating": 4.5,
+  "image": "/template-previews/Soft-Neumorphic.png",
+  "createdAt": "2026-05-01"
+},
   {
     "id": "Solar_Eclipse",
     "title": "Solar Eclipse",

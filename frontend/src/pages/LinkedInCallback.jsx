@@ -44,50 +44,44 @@ useEffect(() => {
         }
 
         try {
-            setStatus('Completing sign-in...')
+    setStatus('Completing sign-in...')
 
-            const apiBase = import.meta.env.VITE_API_URL || '/api'
+    const apiBase = import.meta.env.VITE_API_URL || '/api'
 
-            const resp = await fetch(
-                `${apiBase}/auth/linkedin/token/${encodeURIComponent(code)}`
-            )
+    const resp = await fetch(
+        `${apiBase}/auth/linkedin/token?code=${encodeURIComponent(code)}`
+    )
 
-if (!code) {
-    toast.error('Something went wrong. Please try again.')
-    navigate('/login')
-    return
-}
-
-if (!resp.ok) {
-    const body = await resp.json().catch(() => ({}))
-
-    throw new Error(body.error || 'Token exchange failed')
-}
-            }
-
-            const { token, isNew } = await resp.json()
-
-            await signInWithCustomToken(auth, token)
-
-            const tfaStatus = await twoFactorApi.getStatus()
-
-            if (tfaStatus && tfaStatus.enabled) {
-                setStep('totp')
-                toast.success('Two-factor authentication required')
-            } else {
-                toast.success('Signed in successfully!')
-                navigate('/dashboard')
-            }
-        } catch (err) {
-            console.error('Custom token sign-in failed:', err)
-
-            toast.error('Failed to sign in. Please try again.')
-            navigate('/login')
-        }
+    if (!resp.ok) {
+        const body = await resp.json().catch(() => ({}))
+        throw new Error(body.error || 'Token exchange failed')
     }
 
-    handleCallback()
-}, []);
+    const { token, isNew } = await resp.json()
+
+    await signInWithCustomToken(auth, token)
+
+    // Fetch two-factor status to prevent 2FA bypass
+    const tfaStatus = await twoFactorApi.getStatus()
+
+    if (tfaStatus && tfaStatus.enabled) {
+        setStep('totp')
+        toast.success('Two-factor authentication required')
+    } else {
+        toast.success('Signed in successfully!')
+        navigate('/dashboard')
+    }
+} catch (err) {
+    console.error('Custom token sign-in failed:', err)
+
+    toast.error('Failed to sign in. Please try again.')
+
+    navigate('/login')
+}
+    }
+
+handleCallback()
+}, [searchParams, navigate])
 
     const handleTotpSubmit = async (e) => {
         e.preventDefault()
