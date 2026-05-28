@@ -136,6 +136,7 @@ function Hero() {
           {/* Tagline */}
           <p className="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed mb-8">
             {data.personal.tagline}
+          </p>
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 mb-8">
             <a
