@@ -1,3 +1,10 @@
+# [1.60.0](https://github.com/anurag3407/career-pilot/compare/v1.59.0...v1.60.0) (2026-05-28)
+
+
+### Features
+
+* **deep-ocean:** implement high-fidelity Projects section with subsea sonar and spotlights [#1351](https://github.com/anurag3407/career-pilot/issues/1351) ([82cd0cc](https://github.com/anurag3407/career-pilot/commit/82cd0cc393b9ecd12d36edac83ba7799c0a2bfd8))
+
 # [1.59.0](https://github.com/anurag3407/career-pilot/compare/v1.58.0...v1.59.0) (2026-05-28)
 
 
