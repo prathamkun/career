@@ -1,3 +1,10 @@
+# [1.69.0](https://github.com/anurag3407/career-pilot/compare/v1.68.0...v1.69.0) (2026-05-28)
+
+
+### Features
+
+* complete responsive obsidian vault template implementation ([0bb8df6](https://github.com/anurag3407/career-pilot/commit/0bb8df660c740533af2474ac19419e694883e509))
+
 # [1.68.0](https://github.com/anurag3407/career-pilot/compare/v1.67.0...v1.68.0) (2026-05-28)
 
 
