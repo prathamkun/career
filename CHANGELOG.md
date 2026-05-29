@@ -1,3 +1,10 @@
+# [1.78.0](https://github.com/anurag3407/career-pilot/compare/v1.77.0...v1.78.0) (2026-05-29)
+
+
+### Features
+
+* add Telescope Zoom portfolio template and route ([7270404](https://github.com/anurag3407/career-pilot/commit/72704047e9325e3f212abe4080bd4711cee7f3c4))
+
 # [1.77.0](https://github.com/anurag3407/career-pilot/compare/v1.76.0...v1.77.0) (2026-05-29)
 
 
