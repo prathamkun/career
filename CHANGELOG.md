@@ -1,3 +1,10 @@
+## [1.91.1](https://github.com/anurag3407/career-pilot/compare/v1.91.0...v1.91.1) (2026-05-29)
+
+
+### Bug Fixes
+
+* resolve landing page overlap and navbar stacking issues ([d7107f9](https://github.com/anurag3407/career-pilot/commit/d7107f98d948b74733884ebd3f442843bee79424))
+
 # [1.91.0](https://github.com/anurag3407/career-pilot/compare/v1.90.0...v1.91.0) (2026-05-29)
 
 
