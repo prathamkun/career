@@ -21,9 +21,12 @@ import {
   GraduationCap,
   Bell,
   Mic,
-  Globe
+  Globe,
+  Github,
+  Flame,
+  Code2
 } from 'lucide-react'
-import { resumeApi, jobTrackerApi, portfolioApi } from '../services/api'
+import { resumeApi, jobTrackerApi, portfolioApi, userProfileApi } from '../services/api'
 import Button from '../components/Button'
 import { 
   SkeletonDashboardActions, 
@@ -52,6 +55,11 @@ export default function Dashboard() {
     offered: 0
   })
   const [portfolioCount, setPortfolioCount] = useState(0)
+  const [githubOverview, setGithubOverview] = useState({
+    connected: false,
+    loading: false,
+    stats: null
+  })
 
   useEffect(() => {
     fetchData()
@@ -59,10 +67,11 @@ export default function Dashboard() {
 
   const fetchData = async () => {
     try {
-      const [resumeRes, jobsRes, portfolioRes] = await Promise.all([
+      const [resumeRes, jobsRes, portfolioRes, userProfileRes] = await Promise.all([
         resumeApi.getAll().catch(() => ({ resumes: [] })),
         jobTrackerApi.getAll().catch(() => ({ trackedJobs: [] })),
-        portfolioApi.getAll().catch(() => ({ portfolioItems: [] }))
+        portfolioApi.getAll().catch(() => ({ portfolioItems: [] })),
+        userProfileApi.getMyProfile().catch(() => null)
       ])
 
       const fetchedResumes = Array.isArray(resumeRes.data) ? resumeRes.data : (resumeRes.resumes || resumeRes.data?.resumes || [])
@@ -77,6 +86,29 @@ export default function Dashboard() {
         [];
 
       setPortfolioCount(portfolios.length)
+      const githubUsername = getGithubUsername(
+        userProfileRes?.profile?.github ||
+        userProfileRes?.data?.github ||
+        userProfileRes?.github
+      )
+
+      if (githubUsername) {
+        setGithubOverview({ connected: true, loading: true, stats: null })
+        resumeApi.previewGitHub(githubUsername)
+          .then((githubRes) => {
+            const preview = githubRes.preview || githubRes.data || githubRes
+            setGithubOverview({
+              connected: true,
+              loading: false,
+              stats: buildGithubStats(preview)
+            })
+          })
+          .catch(() => {
+            setGithubOverview({ connected: true, loading: false, stats: null })
+          })
+      } else {
+        setGithubOverview({ connected: false, loading: false, stats: null })
+      }
 
       const stats = {
         total: jobs.length,
@@ -100,6 +132,36 @@ export default function Dashboard() {
       month: 'short',
       day: 'numeric'
     })
+  }
+
+  const getGithubUsername = (github) => {
+    if (!github || typeof github !== 'string') return ''
+
+    const trimmed = github.trim()
+    if (!trimmed) return ''
+
+    const match = trimmed.match(/github\.com\/([^/?#]+)/i)
+    return (match?.[1] || trimmed.replace(/^@/, '')).replace(/\/$/, '')
+  }
+
+  const buildGithubStats = (profile = {}) => {
+    const repositories = profile.topRepositories || profile.repositories || profile.repos || []
+    const topLanguages = (
+      profile.topLanguages ||
+      profile.languages ||
+      repositories.map((repo) => repo.language).filter(Boolean)
+    ).slice(0, 3)
+
+    const totalStars = profile.totalStars ??
+      profile.stars ??
+      repositories.reduce((sum, repo) => sum + Number(repo.stars || repo.stargazers_count || 0), 0)
+
+    return {
+      totalRepos: profile.totalRepos ?? profile.public_repos ?? profile.publicRepos ?? repositories.length,
+      totalStars,
+      topLanguages,
+      currentStreak: profile.currentStreak ?? profile.streak?.currentStreak ?? profile.current_streak ?? null
+    }
   }
 
   const containerVariants = {
@@ -302,6 +364,65 @@ export default function Dashboard() {
                   </motion.div>
                 );
               })}
+            </motion.div>
+
+            {/* GitHub Overview */}
+            <motion.div variants={itemVariants} className="mb-10">
+              {githubOverview.connected ? (
+                <div className="rounded-2xl bg-card border border-border p-5 shadow-sm">
+                  <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center shrink-0">
+                        <Github className="w-6 h-6 text-foreground" />
+                      </div>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-3">
+                          <h2 className="text-lg font-black text-foreground">GitHub Overview</h2>
+                          {githubOverview.loading && (
+                            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                              Syncing
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs font-semibold text-muted-foreground mt-1">
+                          Your repository snapshot at a glance.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 lg:min-w-[560px]">
+                      {[
+                        { icon: Github, label: 'Repos', value: githubOverview.stats?.totalRepos ?? '-' },
+                        { icon: Star, label: 'Stars', value: githubOverview.stats?.totalStars ?? '-' },
+                        { icon: Code2, label: 'Languages', value: githubOverview.stats?.topLanguages?.join(', ') || '-' },
+                        { icon: Flame, label: 'Streak', value: githubOverview.stats?.currentStreak !== null && githubOverview.stats?.currentStreak !== undefined ? `${githubOverview.stats.currentStreak}d` : '-' },
+                      ].map((item) => (
+                        <div key={item.label} className="rounded-xl border border-border bg-background/50 px-3 py-3 min-w-0">
+                          <div className="flex items-center gap-2 text-muted-foreground mb-1">
+                            <item.icon className="w-3.5 h-3.5 shrink-0" />
+                            <span className="text-[10px] font-black uppercase tracking-widest">{item.label}</span>
+                          </div>
+                          <p className="text-sm font-black text-foreground truncate">{item.value}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Link to="/github" className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary/10 px-4 py-2 text-sm font-black text-primary hover:bg-primary/15 transition-colors shrink-0">
+                      View Details <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-primary/20 bg-primary/5 px-5 py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-center gap-3">
+                    <Github className="w-5 h-5 text-primary shrink-0" />
+                    <p className="text-sm font-bold text-foreground">Connect GitHub to see repository stats on your dashboard.</p>
+                  </div>
+                  <Link to="/profile" className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs font-black text-primary-foreground hover:bg-primary/90 transition-colors">
+                    Connect GitHub <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              )}
             </motion.div>
 
             <div className="grid lg:grid-cols-2 gap-10">

@@ -253,6 +253,16 @@ function AppRoutes() {
     </ProtectedRoute>
   } 
 />
+        <Route 
+  path="/github" 
+  element={
+    <ProtectedRoute>
+      <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading GitHub Dashboard...</div>}>
+        <GitHubDashboard />
+      </Suspense>
+    </ProtectedRoute>
+  } 
+/>
 
         <Route 
   path="/repo-analyzer" 
