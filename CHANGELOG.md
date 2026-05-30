@@ -1,3 +1,11 @@
+# [1.103.0](https://github.com/anurag3407/career-pilot/compare/v1.102.0...v1.103.0) (2026-05-30)
+
+
+### Features
+
+* add Digital DNA portfolio template ([9382fd5](https://github.com/anurag3407/career-pilot/commit/9382fd515c2f0700589725803a4b305302dc1c1d))
+* implement Digital DNA portfolio template ([b7f2042](https://github.com/anurag3407/career-pilot/commit/b7f20423f7730f1b166a6c853af2f2b3e4143a12))
+
 # [1.102.0](https://github.com/anurag3407/career-pilot/compare/v1.101.0...v1.102.0) (2026-05-30)
 
 
