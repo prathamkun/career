@@ -13,10 +13,12 @@ import WeatherMood from "../components/portfolio/templates/Weather_Mood/index";
 import SwissTypography from "../components/portfolio/templates/Swiss_Typography/index";
 import DesertDunes from "../components/portfolio/templates/Desert_Dunes/index";
 
-/* Wraps each full-template preview in an isolated scroll container so
-   any `position:fixed` navbar inside the template stays scoped to the
-   preview box and never overlaps the TemplateGallery page navbar. */
-function TemplatePreviewFrame({ label, badge, badgeColor, children }) {
+/* TemplatePreviewFrame — contains each full portfolio template in a
+   sandboxed scrollable box. The key trick: CSS `transform` on the outer
+   wrapper makes it the "containing block" for any position:fixed children,
+   so a template's fixed navbar stays inside the frame instead of
+   escaping to the top of the viewport and overlapping the page navbar. */
+function TemplatePreviewFrame({ label, badgeColor, children }) {
   return (
     <div className="mt-12">
       <div className="mb-4 flex items-center gap-3 px-1">
@@ -25,10 +27,18 @@ function TemplatePreviewFrame({ label, badge, badgeColor, children }) {
         </span>
         <h2 className="text-lg font-semibold text-foreground/70">{label}</h2>
       </div>
-      {/* isolation:isolate + overflow:clip confine fixed/sticky children */}
+      {/* transform:translate(0) is the critical line — it creates a new
+          containing block so position:fixed elements inside are anchored
+          to this div, not to the viewport. */}
       <div
-        className="overflow-hidden rounded-2xl border border-border"
-        style={{ position: "relative", isolation: "isolate", height: "600px", overflowY: "auto", overflowX: "hidden" }}
+        className="rounded-2xl border border-border"
+        style={{
+          height: 600,
+          overflowY: "auto",
+          overflowX: "hidden",
+          transform: "translate(0)",
+          position: "relative",
+        }}
       >
         {children}
       </div>
