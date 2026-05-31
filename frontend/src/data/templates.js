@@ -667,12 +667,13 @@ export const templates = [
     "title": "Duotone Bold",
     "category": "Portfolio",
     "colorScheme": "Dark",
-    "layout": "Grid",
-    "author": "System",
-    "views": 1055,
-    "rating": 4.5,
+    "layout": "Interactive",
+    "author": "Vexx",
+    "views": 2550,
+    "rating": 4.9,
     "image": "/template-previews/Duotone_Bold.png",
-    "createdAt": "2026-05-01"
+    "createdAt": "2026-05-31",
+    "isComplete": true
   },
   {
     "id": "Ecommerce_Style",
