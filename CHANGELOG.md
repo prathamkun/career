@@ -1,3 +1,10 @@
+# [1.108.0](https://github.com/anurag3407/career-pilot/compare/v1.107.0...v1.108.0) (2026-05-31)
+
+
+### Features
+
+* Added the Stripe Gradient portfolio template ([836cf25](https://github.com/anurag3407/career-pilot/commit/836cf25e23207ad079703d70080f0c9c9735ffce))
+
 # [1.107.0](https://github.com/anurag3407/career-pilot/compare/v1.106.0...v1.107.0) (2026-05-30)
 
 
