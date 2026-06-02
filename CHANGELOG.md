@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/advikdivekar/career-pilot-advik/compare/v1.0.1...v1.1.0) (2026-06-02)
+
+
+### Features
+
+* add Ocean Depths, Neon Cityscape, Planetary Orbit, Low Poly Terrain, High Fashion templates to TemplateGallery ([ac831af](https://github.com/advikdivekar/career-pilot-advik/commit/ac831af36689a84c2035cd19070f4617eff4e009))
+
 ## [1.0.1](https://github.com/advikdivekar/career-pilot-advik/compare/v1.0.0...v1.0.1) (2026-06-02)
 
 
