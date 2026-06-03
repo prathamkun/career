@@ -49,7 +49,10 @@ function deterministicKeywordAnalysis(resumeText, jobRole = '') {
       '\\$&'
     );
 
-    const pattern = new RegExp(`\\b${escaped}\\b`, 'i');
+    const pattern = new RegExp(
+      `(^|[^A-Za-z0-9_])${escaped}($|[^A-Za-z0-9_])`,
+      'i'
+    );
 
     return pattern.test(text);
   };
