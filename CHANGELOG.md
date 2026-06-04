@@ -1,3 +1,10 @@
+# [1.150.0](https://github.com/anurag3407/career-pilot/compare/v1.149.0...v1.150.0) (2026-06-04)
+
+
+### Features
+
+* implement Neon Cityscape portfolio template with cyberpunk city scene ([0017991](https://github.com/anurag3407/career-pilot/commit/0017991300485ac63a69781e9b35126accec2511)), closes [#1862](https://github.com/anurag3407/career-pilot/issues/1862)
+
 # [1.149.0](https://github.com/anurag3407/career-pilot/compare/v1.148.0...v1.149.0) (2026-06-04)
 
 
