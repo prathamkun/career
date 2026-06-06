@@ -1,3 +1,11 @@
+# [1.169.0](https://github.com/anurag3407/career-pilot/compare/v1.168.0...v1.169.0) (2026-06-06)
+
+
+### Features
+
+* add career growth insights dashboard ([42b0c7d](https://github.com/anurag3407/career-pilot/commit/42b0c7dbb677256d262a3e08696e517e701330fe))
+* add template comparison insights panel ([2a0ca49](https://github.com/anurag3407/career-pilot/commit/2a0ca49410a71d94eafe65fc7830d11bed92b8a8))
+
 # [1.168.0](https://github.com/anurag3407/career-pilot/compare/v1.167.0...v1.168.0) (2026-06-06)
 
 
