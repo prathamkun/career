@@ -71,6 +71,27 @@ import { useSearchParams } from "react-router-dom";
 // import FantasyRPGProjects from "../components/portfolio/templates/Fantasy_RPG/Projects";
 import MorphingBlobs from "../components/portfolio/templates/Morphing_Blobs/index";
 
+const templateInsights = {
+  Swiss_Typography: {
+    ats: "95%",
+    industry: "Software Engineering",
+    popularity: "High",
+    experience: "Entry-Mid",
+  },
+  Liquid_Glass: {
+    ats: "80%",
+    industry: "Creative",
+    popularity: "Medium",
+    experience: "All Levels",
+  },
+  Desert_Dunes: {
+    ats: "85%",
+    industry: "Portfolio",
+    popularity: "High",
+    experience: "Mid-Senior",
+  },
+};
+
 
 function FilterSelect({ value, onChange, options, className = "" }) {
   const [open, setOpen] = useState(false);
@@ -315,6 +336,7 @@ const { theme, toggleTheme } = useTheme();
 const [searchParams, setSearchParams] = useSearchParams();
 const previewTemplateId = searchParams.get("preview");
 const [hoveredCard, setHoveredCard] = useState(null);
+const selectedTemplateInfo = templateInsights[hoveredCard];
 
   const [category, setCategory] = useState("All");
   const [colorScheme, setColorScheme] = useState("All");
@@ -461,6 +483,44 @@ const [hoveredCard, setHoveredCard] = useState(null);
         <FilterSelect value={layout} onChange={setLayout} options={LAYOUT_OPTIONS} />
         <FilterSelect value={sort} onChange={setSort} options={SORT_OPTIONS} className="ml-auto" />
       </div>
+
+      {selectedTemplateInfo && (
+  <div className="mb-8 rounded-2xl border border-cyan-500/20 bg-card p-5">
+    <h3 className="text-lg font-semibold mb-4">
+      Template Comparison Insights
+    </h3>
+
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <p className="text-xs text-muted-foreground">ATS Score</p>
+        <p className="font-bold text-cyan-400">
+          {selectedTemplateInfo.ats}
+        </p>
+      </div>
+
+      <div>
+        <p className="text-xs text-muted-foreground">Industry</p>
+        <p className="font-bold">
+          {selectedTemplateInfo.industry}
+        </p>
+      </div>
+
+      <div>
+        <p className="text-xs text-muted-foreground">Popularity</p>
+        <p className="font-bold">
+          {selectedTemplateInfo.popularity}
+        </p>
+      </div>
+
+      <div>
+        <p className="text-xs text-muted-foreground">Experience Level</p>
+        <p className="font-bold">
+          {selectedTemplateInfo.experience}
+        </p>
+      </div>
+    </div>
+  </div>
+)}
 
       {sortedTemplates.length === 0 ? (
         <div className="text-center text-muted-foreground mt-12 text-xl">
