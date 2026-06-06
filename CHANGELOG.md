@@ -1,3 +1,10 @@
+# [1.178.0](https://github.com/anurag3407/career-pilot/compare/v1.177.0...v1.178.0) (2026-06-06)
+
+
+### Features
+
+* add resume content readability analyzer ([f786f2b](https://github.com/anurag3407/career-pilot/commit/f786f2be9dd62f72f53dbdd2c35f8a5d53b201f6))
+
 # [1.177.0](https://github.com/anurag3407/career-pilot/compare/v1.176.0...v1.177.0) (2026-06-06)
 
 
