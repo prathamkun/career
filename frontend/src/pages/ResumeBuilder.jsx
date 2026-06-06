@@ -67,6 +67,32 @@ export default function ResumeBuilder() {
     { name: '', tech: '', link: '', description: '' }
   ])
   const [skills, setSkills] = useState('')
+  const [recommendedSections, setRecommendedSections] = useState([])
+
+useEffect(() => {
+  const recommendations = []
+
+  if (projects.every(p => !p.name.trim())) {
+    recommendations.push("Projects")
+  }
+
+  if (!skills.trim()) {
+    recommendations.push("Skills")
+  }
+
+  if (education.every(e => !e.school?.trim())) {
+    recommendations.push("Certifications")
+  }
+
+  if (experience.every(e => !e.title?.trim())) {
+    recommendations.push("Volunteer Experience")
+  }
+
+  setRecommendedSections(recommendations)
+}, [projects, skills, education, experience])
+
+// error state
+const [personalErrors, setPersonalErrors] = useState({})
 
   // ── error state ─────────────────────────────────────────────────────────────
   const [personalErrors,   setPersonalErrors]   = useState({})
@@ -706,6 +732,24 @@ export default function ResumeBuilder() {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-semibold mb-6">Preview &amp; Generate</h2>
+            {recommendedSections.length > 0 && (
+  <div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+    <h3 className="font-semibold mb-2">
+      Recommended Sections
+    </h3>
+
+    <div className="flex flex-wrap gap-2">
+      {recommendedSections.map(section => (
+        <span
+          key={section}
+          className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm"
+        >
+          {section}
+        </span>
+      ))}
+    </div>
+  </div>
+)}
             <div className="bg-background border border-border rounded-xl p-6 h-[500px] overflow-y-auto font-mono text-sm whitespace-pre-wrap">
               {generateMarkdown()}
             </div>
