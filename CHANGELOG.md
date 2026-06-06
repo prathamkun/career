@@ -1,3 +1,15 @@
+# [1.166.0](https://github.com/anurag3407/career-pilot/compare/v1.165.0...v1.166.0) (2026-06-06)
+
+
+### Bug Fixes
+
+* apply CodeAnt review fixes to Contact section ([be8da79](https://github.com/anurag3407/career-pilot/commit/be8da794591e1c09dbf462cab58a25b411f4c923))
+
+
+### Features
+
+* implement Contact section for Sports Athletic portfolio template ([dde15f9](https://github.com/anurag3407/career-pilot/commit/dde15f9311d2ed236e17ab3204da9ecb27670f42))
+
 # [1.165.0](https://github.com/anurag3407/career-pilot/compare/v1.164.0...v1.165.0) (2026-06-06)
 
 
