@@ -78,6 +78,7 @@ export default function ResumeBuilder() {
   const [resumeVersions, setResumeVersions] = useState([])
   const [selectedVersion, setSelectedVersion] = useState(null)
   const [recommendedSkills, setRecommendedSkills] = useState([])
+  const [recommendedSkills, setRecommendedSkills] = useState([])
 
   useEffect(() => {
   const suggestions = []
@@ -161,8 +162,18 @@ export default function ResumeBuilder() {
   "Teamwork"
 ]
 
+const missing = keywords.filter(
+  keyword => !foundKeywords.includes(keyword)
+)
+
+setMissingKeywords(missing)
+
 const suggestions = prioritySkills.filter(
   skill => missing.includes(skill)
+)
+
+setRecommendedSkills(
+  suggestions.slice(0, 4)
 )
 
 setRecommendedSkills(
@@ -957,6 +968,25 @@ useEffect(() => {
       style={{ width: `${atsScore}%` }}
     />
   </div>
+
+  {recommendedSkills.length > 0 && (
+  <div className="mt-4">
+    <h4 className="font-medium mb-2">
+      Recommended Skills to Learn
+    </h4>
+
+    <div className="flex flex-wrap gap-2">
+      {recommendedSkills.map(skill => (
+        <span
+          key={skill}
+          className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm"
+        >
+          {skill}
+        </span>
+      ))}
+    </div>
+  </div>
+)}
 
   <div className="mt-4">
     <h4 className="font-medium mb-2">
