@@ -1,3 +1,10 @@
+# [1.193.0](https://github.com/anurag3407/career-pilot/compare/v1.192.0...v1.193.0) (2026-06-08)
+
+
+### Features
+
+* Add Hidden Easter Egg Scavenger Hunt portfolio template [#3270](https://github.com/anurag3407/career-pilot/issues/3270) ([d4f19d7](https://github.com/anurag3407/career-pilot/commit/d4f19d76f8cf49e547306fb7413136f88b1981fc))
+
 # [1.192.0](https://github.com/anurag3407/career-pilot/compare/v1.191.0...v1.192.0) (2026-06-08)
 
 
