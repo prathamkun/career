@@ -429,6 +429,15 @@ export const templates = [
     "createdAt": "2026-05-31",
     "isComplete": true
   },
+
+  {
+    id: "zine-collage",
+    title: "Zine Collage",
+    category: "Brutalist",
+    description: "An asymmetric, high-contrast scrapbook magazine layout featuring heavy ink borders, rotated clipping frames, and retro label-maker accents.",
+    isComplete: true
+  },
+  
   {
     "id": "Cinematic",
     "title": "Cinematic",
