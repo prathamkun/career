@@ -1,3 +1,10 @@
+# [1.190.0](https://github.com/anurag3407/career-pilot/compare/v1.189.0...v1.190.0) (2026-06-08)
+
+
+### Features
+
+* implement brutalist zine collage portfolio template [#3258](https://github.com/anurag3407/career-pilot/issues/3258) ([5a8330f](https://github.com/anurag3407/career-pilot/commit/5a8330fbf357f0a87d25e942484e75fc8e9673c5))
+
 # [1.189.0](https://github.com/anurag3407/career-pilot/compare/v1.188.0...v1.189.0) (2026-06-08)
 
 
