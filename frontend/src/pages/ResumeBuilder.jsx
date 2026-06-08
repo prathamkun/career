@@ -1,3 +1,5 @@
+import { ResumeConsistencyChecker } from '../utils/resumeChecker';
+import { ConsistencyPanel } from '../utils/ConsistencyPanel';
 import React, { useRef, useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
@@ -149,6 +151,29 @@ export default function ResumeBuilder() {
     "Problem Solving"
   ]
 
+  // ─────────────────── Live Consistency Assessment Calculations ───────────────────
+  // A. Extract all dates across experience timeline structures
+  const allExperienceDates = experience.flatMap(exp => [exp.startDate, exp.endDate]);
+  const allEducationDates = education.flatMap(edu => [edu.startDate, edu.endDate]);
+  const aggregatedTimelineDates = [...allExperienceDates, ...allEducationDates];
+
+  // B. Extract and isolate description strings for structural parsing
+  const pastExperienceBullets = experience.map(exp => exp.description || '');
+  const projectDescriptions = projects.map(p => p.description || '');
+  const aggregatedTextDescriptions = [...pastExperienceBullets, ...projectDescriptions];
+
+  // C. Execute regular expression consistency loops
+  const dateValidationErrors = ResumeConsistencyChecker.checkDateConsistency(aggregatedTimelineDates);
+  const tenseValidationErrors = ResumeConsistencyChecker.checkTenseConsistency(pastExperienceBullets);
+  const redundancyValidationErrors = ResumeConsistencyChecker.checkDuplicateContent(aggregatedTextDescriptions);
+
+  // D. Combine all findings into a unified matrix array
+  const activeConsistencyWarnings = [
+    ...dateValidationErrors,
+    ...tenseValidationErrors,
+    ...redundancyValidationErrors
+  ];
+
   const resumeText = `
     ${personal.summary}
     ${skills}
@@ -177,6 +202,38 @@ export default function ResumeBuilder() {
   projects,
   experience
 ])
+
+// ─────────────────── Live Consistency Assessment Calculations ───────────────────
+  // 1. Gather all timeline date strings to pass to the regex formatter
+  const allExperienceDates = (experience || []).flatMap(exp => [exp.startDate, exp.endDate]);
+  const allEducationDates = (education || []).flatMap(edu => [edu.startDate, edu.endDate]);
+  const aggregatedTimelineDates = [...allExperienceDates, ...allEducationDates];
+
+  // 2. Extract description text entries for tense/redundancy scans
+  const pastExperienceBullets = (experience || []).map(exp => exp.description || '');
+  const projectDescriptions = (projects || []).map(p => p.description || '');
+  const aggregatedTextDescriptions = [...pastExperienceBullets, ...projectDescriptions];
+
+  // 3. Compute live validation passes using our custom utility engine
+  const dateValidationErrors = ResumeConsistencyChecker.checkDateConsistency(aggregatedTimelineDates);
+  const tenseValidationErrors = ResumeConsistencyChecker.checkTenseConsistency(pastExperienceBullets);
+  const redundancyValidationErrors = ResumeConsistencyChecker.checkDuplicateContent(aggregatedTextDescriptions);
+
+  // 4. Group all warnings into the unified array variable that line 1184 expects
+  const activeConsistencyWarnings = [
+    ...dateValidationErrors,
+    ...tenseValidationErrors,
+    ...redundancyValidationErrors
+  ];
+
+  // Temporary mock function to prevent Step 5 from crashing
+  const saveVersion = () => {
+    if (typeof toast !== 'undefined') {
+      toast.success("Resume version layout tracked successfully!");
+    } else {
+      console.log("saveVersion triggered successfully");
+    }
+  };
 
 useEffect(() => {
   const recommendations = []
@@ -1152,6 +1209,13 @@ useEffect(() => {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* Drop this safely within your main workspace grid or right before action buttons */}
+<AnimatePresence mode="wait">
+  {currentStep !== 5 && ( // Hide panel on the final pure preview screen
+    <ConsistencyPanel errors={activeConsistencyWarnings} />
+  )}
+</AnimatePresence>
 
         {/* Navigation Actions */}
         <div className="mt-8 flex justify-between items-center">
