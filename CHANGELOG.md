@@ -1,3 +1,10 @@
+# [1.188.0](https://github.com/anurag3407/career-pilot/compare/v1.187.1...v1.188.0) (2026-06-08)
+
+
+### Features
+
+* Add top-level AppErrorBoundary to catch unhandled route errors ([8a056d2](https://github.com/anurag3407/career-pilot/commit/8a056d21873219bd4f7f4527a0576a6ce5c913ec)), closes [#1011](https://github.com/anurag3407/career-pilot/issues/1011)
+
 ## [1.187.1](https://github.com/anurag3407/career-pilot/compare/v1.187.0...v1.187.1) (2026-06-08)
 
 
