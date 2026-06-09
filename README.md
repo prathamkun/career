@@ -32,7 +32,7 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
+- [How It Works](#how-it-works-overview)
 - [Why This Project](#why-this-project)
 - [Key Features](#key-features)
 - [Getting Started](#getting-started)
