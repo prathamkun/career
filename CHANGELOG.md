@@ -1,3 +1,10 @@
+## [1.206.1](https://github.com/anurag3407/career-pilot/compare/v1.206.0...v1.206.1) (2026-06-10)
+
+
+### Bug Fixes
+
+* remove unauthenticated request bypass from aiRateLimiter ([9e41a14](https://github.com/anurag3407/career-pilot/commit/9e41a14e9948f1e7d2dbe3b97db0539caedac441)), closes [#3379](https://github.com/anurag3407/career-pilot/issues/3379)
+
 # [1.206.0](https://github.com/anurag3407/career-pilot/compare/v1.205.0...v1.206.0) (2026-06-09)
 
 
